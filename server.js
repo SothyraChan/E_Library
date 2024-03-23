@@ -1,15 +1,11 @@
-const express = require("express");
-const path = require("path");
-const app = express();
-const assetsRouter = require("./server/assets-router");
-app.use("/src", assetsRouter);
-app.use("/", express.static(path.join(__dirname, "public")));
-app.get("/api/v1", (req, res) => {
-  res.json({
-    project: "React and Express Boilerplate",
-    from: "Vanaldito",
-  });
+import config from './config/config.js' 
+import app from './server/express.js'
+app.get("/", (req, res) => {
+res.json({ message: "Welcome to User application." });
 });
-app.get("/*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.listen(config.port, (err) => { 
+if (err) {
+console.log(err) 
+}
+console.info('Server started on port %s.', config.port) 
 })
