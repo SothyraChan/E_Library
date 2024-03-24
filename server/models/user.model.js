@@ -47,3 +47,4 @@ UserSchema.path('hashed_password').validate(function(v) {
 this.invalidate('password', 'Password is required');
 }
 })
+export default mongoose.model('User', UserSchema);
