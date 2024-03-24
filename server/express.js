@@ -9,9 +9,8 @@ import userRoutes from './routes/user.routes.js'
 import authRoutes from './routes/auth.routes.js'
 import bookRoutes from './routes/book.routes.js'
 import path from 'path'
-
 //import devBundle from './devBundle' 
-import path from 'path'
+
 const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
 //devBundle.compile(app)
