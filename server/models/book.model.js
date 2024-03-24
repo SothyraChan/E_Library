@@ -14,7 +14,7 @@ const BookSchema = new mongoose.Schema({
     imageId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Image',
-        required: [true, 'An imageId is required']
+        required: false
     },
     length: {
         type: Number,

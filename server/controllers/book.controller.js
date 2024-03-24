@@ -5,6 +5,8 @@ import errorHandler from '../helpers/dbErrorHandler.js';
 const create = async (req, res) => {
     const book = new Book(req.body);
     try {
+        var rawdate = req.body.creationDate;
+        book.creationDate = new Date (rawdate);
         await book.save();
         return res.status(200).json({
             message: "Book successfully created!"
