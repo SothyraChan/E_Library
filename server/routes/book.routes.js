@@ -7,7 +7,7 @@ router.route('/api/books')
     .post(bookCtrl.create)
     .delete(bookCtrl.deleteAll);
 
-router.route('/api/books/:id')
+router.route('/api/books/:bookId')
     .get(bookCtrl.read)
     .put(bookCtrl.update)
     .delete(bookCtrl.remove);

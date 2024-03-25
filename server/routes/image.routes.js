@@ -7,7 +7,7 @@ router.route('/api/images')
     .post(imageCtrl.create)
     .delete(imageCtrl.deleteAll);
 
-router.route('/api/images/:id')
+router.route('/api/images/:imageId')
     .get(imageCtrl.read)
     .put(imageCtrl.update)
     .delete(imageCtrl.remove);

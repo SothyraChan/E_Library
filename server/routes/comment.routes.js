@@ -7,7 +7,7 @@ router.route('/api/comments')
     .post(commentCtrl.create)
     .delete(commentCtrl.deleteAll);
 
-router.route('/api/comments/:id')
+router.route('/api/comments/:commentId')
     .get(commentCtrl.read)
     .put(commentCtrl.update)
     .delete(commentCtrl.remove);
