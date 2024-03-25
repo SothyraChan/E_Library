@@ -1,11 +1,10 @@
 import queryString from 'query-string'
-const create = async (params, credentials, product) => {
+const create = async (product) => {
   try {
-    let response = await fetch('/api/books/by/'+ params.userId, {
+    let response = await fetch('/api/books/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Bearer ' + credentials.t
         },
         body: product
       })

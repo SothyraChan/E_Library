@@ -3,7 +3,7 @@ export default () => {
     <html lang="en"> 
     <head>
     <meta charset="utf-8">
-    <title>MERN Skeleton</title> 
+    <title>E-Library</title> 
     </head>
     <body>
     <div id="root">Hello World</div> 
