@@ -57,10 +57,7 @@ export default function NewBook() {
       error: ''
   })
   const handleChange = name => event => {
-    const value = name === 'image'
-    ? event.target.files[0]
-    : event.target.value
-    setValues({...values, [name]: value })
+    setValues({...values, [name]: event.target.value })
   }
   const clickSubmit = () => {
     let bookData = new FormData()
@@ -71,7 +68,7 @@ export default function NewBook() {
     values.yearPublished && bookData.append('yearPublished', values.yearPublished)
     values.genre && bookData.append('genre', values.genre)
     values.contentUrl && bookData.append('contentUrl', values.contentUrl)
-    console.log(values.name);
+    
     create(bookData).then((data) => {
       if (data.error) {
         setValues({...values, error: data.error})
