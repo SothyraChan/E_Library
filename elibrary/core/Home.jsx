@@ -13,11 +13,11 @@ const useStyles = makeStyles(theme => ({
           marginTop: theme.spacing(5),
         },
          title: {
-            padding: `${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
+            padding: theme.spacing(3, 2.5, 2),
             color: theme.palette.openTitle,
         },
         media: {
-            minHeight: 400,
+            minHeight: 600,
         },
     }))
 
@@ -27,18 +27,18 @@ const useStyles = makeStyles(theme => ({
         <Card className={classes.card}>
             <Typography variant="h6" className={classes.title}>
                 The E-Library.
-                </Typography>
-                <CardMedia
+            </Typography>
+            <CardMedia
                 className={classes.media}
                 image={logoImg}
                 title="Blue Screens Logo"
-                />
-                <CardContent>
+            />
+            <CardContent>
                     <Typography variant="body2" component="p">
-                        Welcome to the E-Library! Enjoy your stay.
-                        </Typography>
-                        </CardContent>
-                         </Card>
-                         )
+                    Welcome to the E-Library! Enjoy your stay.
+                    </Typography>
+            </CardContent>
+        </Card>
+        )
 }
     

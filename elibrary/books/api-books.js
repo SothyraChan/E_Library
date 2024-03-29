@@ -1,13 +1,12 @@
 import queryString from 'query-string'
-const create = async (params, credentials, product) => {
+const create = async (book) => {
   try {
-    let response = await fetch('/api/books/by/'+ params.userId, {
+    let response = await fetch('/api/books/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Bearer ' + credentials.t
         },
-        body: product
+        body: book
       })
       return response.json()
     }catch(err) {
@@ -45,7 +44,7 @@ const update = async (params, credentials, product) => {
 
 const remove = async (params, credentials) => {
   try {
-    let response = await fetch('/api/product/'+params.productId, {
+    let response = await fetch('/api/books/'+params.productId, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

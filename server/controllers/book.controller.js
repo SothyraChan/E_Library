@@ -1,9 +1,30 @@
 import Book from '../models/book.model.js';
 import extend from 'lodash/extend.js';
 import errorHandler from '../helpers/dbErrorHandler.js';
+import formidable from 'formidable'
+import fs from 'fs'
 
 const create = async (req, res) => {
-    const book = new Book(req.body);
+    
+    let form = new formidable.IncomingForm()
+    form.keepExtensions = true
+    console.log(req.body)
+    form.parse(req, async (err, fields, files) => {
+        let book = new Book (fields)
+        try {
+            let result = await book.save()
+                res.status(200).json(result)
+            }catch (err){
+            return res.status(400).json({
+                error: errorHandler.getErrorMessage(err)
+            })
+            }
+
+        })
+        /*
+    else
+    {    
+        const book = new Book(req.body);
     try {
         var rawdate = req.body.creationDate;
         book.creationDate = new Date (rawdate);
@@ -16,6 +37,7 @@ const create = async (req, res) => {
             error: errorHandler.getErrorMessage(err)
         });
     }
+    }*/
 };
 
 const list = async (req, res) => {

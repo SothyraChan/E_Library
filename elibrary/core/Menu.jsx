@@ -35,6 +35,9 @@ const Menu = withRouter(({history}) => (
         <Link to="/books/all">
           <Button style={isActive(history, "/books/all")}>Books</Button>
         </Link>  
+        <Link to="/books/create">
+          <Button style={isActive(history, "/books/create")}>Create Book</Button>
+        </Link>  
       </div>
       <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {
@@ -51,10 +54,11 @@ const Menu = withRouter(({history}) => (
       }
       {
         auth.isAuthenticated() && (<span>
-          {auth.isAuthenticated().user.seller}
-          <Link to={"/user/" + auth.isAuthenticated().user._id}>
-            <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
-          </Link>
+
+          {auth.isAuthenticated().user.admin &&  <Link to="/books/create">
+          <Button style={isPartActive(history, "/books/create")}>Create Book</Button>
+          </Link>}
+
           <Button color="inherit" onClick={() => {
               auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>

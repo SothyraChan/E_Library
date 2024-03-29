@@ -1,11 +1,21 @@
 import React from 'react'
-import {Route, Routes} from 'react-router-dom'
-import Home from './core/Home' 
+import {Route, Switch} from 'react-router-dom'
+import MainMenu from './core/Home' 
+import Menu from './core/Menu'
+import Signup from './user/Signup'
+import Signin from './auth/Signin'
+import Books from './books/Books'
+import CreateBooks from './books/CreateBooks'
 const MainRouter = () => {
 return ( <div> 
-<Routes>
-<Route exact path="/" element={<Home />}/> 
-</Routes>
+    <Menu/>
+    <Switch>
+        <Route exact path="/" component={MainMenu}/> 
+        <Route path="/signup" component={Signup}/>
+        <Route path="/signin" component={Signin}/>
+        <Route path="/books/all" component={Books}/>
+        <Route path="/books/create" component={CreateBooks}/>
+    </Switch>
 </div> 
 )
 }
