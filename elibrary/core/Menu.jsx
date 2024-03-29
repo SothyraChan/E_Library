@@ -63,6 +63,7 @@ const Menu = withRouter(({history}) => (
               auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>
         </span>)
+
       }
       </span></div>
     </Toolbar>
