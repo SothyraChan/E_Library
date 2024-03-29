@@ -1,6 +1,7 @@
 import User from '../models/user.model.js'
 import extend from 'lodash/extend.js'
 import errorHandler from './error.controller.js'
+
 const create = async (req, res) => { 
 const user = new User(req.body) 
 try {
@@ -72,4 +73,13 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-export default { create, userByID, read, list, remove, update }
+const isAdmin = (req, res, next) => {
+    const isAdmin = req.profile && req.profile.admin
+    if (!isAdmin) {
+      return res.status('403').json({
+        error: "User is not an administrator"
+      })
+    }
+    next()
+  }
+export default { create, userByID, read, list, remove, update, isAdmin }
