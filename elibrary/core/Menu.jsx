@@ -52,6 +52,18 @@ const Menu = withRouter(({history}) => (
           </Link>
         </span>)
       }
+      {
+        auth.isAuthenticated() && (<span>
+
+          {auth.isAuthenticated().user.admin &&  <Link to="/books/create">
+          <Button style={isPartActive(history, "/books/create")}>Create Book</Button>
+          </Link>}
+
+          <Button color="inherit" onClick={() => {
+              auth.clearJWT(() => history.push('/'))
+            }}>Sign out</Button>
+        </span>)
+      }
       </span></div>
     </Toolbar>
   </AppBar>

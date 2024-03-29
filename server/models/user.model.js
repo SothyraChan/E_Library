@@ -18,6 +18,10 @@ created: {
 type: Date,
 default: Date.now
    },
+admin: {
+   type: Boolean,
+   default: false
+},
  updated: {
 type: Date,
 default: Date.now
