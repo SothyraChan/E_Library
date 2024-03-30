@@ -7,6 +7,7 @@ import Signin from './auth/Signin'
 import Books from './books/Books'
 import CreateBooks from './books/CreateBooks'
 //<Route path="/user/:userId" component={Profile}/>
+import ProfilePage from './user/ProfilePage';
 const MainRouter = () => {
 return ( <div> 
     <Menu/>
@@ -16,6 +17,7 @@ return ( <div>
         <Route path="/signin" component={Signin}/>
         <Route path="/books/all" component={Books}/>
         <Route path="/books/create" component={CreateBooks}/>
+        <Route path="/profile" component={ProfilePage} /> 
         
     </Switch>
 </div> 
