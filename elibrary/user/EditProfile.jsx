@@ -14,7 +14,7 @@ const EditProfile = () => {
     name: '',
     email: '',
     password: '',
-    seller: false
+    admin: false
   });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const EditProfile = () => {
   };
 
   const handleCheck = () => {
-    setValues({ ...values, seller: !values.seller });
+    setValues({ ...values, admin: !values.admin });
   };
 
   const clickSubmit = () => {
@@ -36,7 +36,7 @@ const EditProfile = () => {
         name: values.name,
         email: values.email,
         password: values.password,
-        seller: values.seller
+        admin: values.admin
       };
   
       // Call the update function from the API
@@ -94,14 +94,14 @@ const EditProfile = () => {
             </Paper>
           </Grid>
         </Grid>
-        <Typography variant="subtitle1">Seller Account</Typography>
+        <Typography variant="subtitle1">Admin Account</Typography>
         <label>
           <input
             type="checkbox"
-            checked={values.seller}
+            checked={values.admin}
             onChange={handleCheck}
           />
-          {values.seller ? 'Active' : 'Inactive'}
+          {values.admin ? 'Active' : 'Inactive'}
         </label>
       </CardContent>
       <CardActions>
