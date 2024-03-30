@@ -26,7 +26,7 @@ const read = async (params, signal) => {
   }
 }
 
-const update = async (params, credentials, product) => {
+const update = async (params, credentials, books) => {
   try {
     let response = await fetch('/api/books/'+params.bookId, {
       method: 'PUT',
@@ -34,7 +34,7 @@ const update = async (params, credentials, product) => {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + credentials.t
       },
-      body: product
+      body: books
     })
     return response.json()
   } catch(err) {

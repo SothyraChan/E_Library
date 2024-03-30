@@ -35,9 +35,6 @@ const Menu = withRouter(({history}) => (
         <Link to="/books/all">
           <Button style={isActive(history, "/books/all")}>Books</Button>
         </Link>  
-        <Link to="/books/create">
-          <Button style={isActive(history, "/books/create")}>Create Book</Button>
-        </Link>  
       </div>
       <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {
