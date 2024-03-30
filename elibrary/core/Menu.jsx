@@ -52,7 +52,7 @@ const Menu = withRouter(({history}) => (
       {
         auth.isAuthenticated() && (<span>
 
-          {auth.isAuthenticated().user.admin &&  <Link to="/books/create">
+          {<Link to="/books/create">
           <Button style={isPartActive(history, "/books/create")}>Create Book</Button>
           </Link>}
 
