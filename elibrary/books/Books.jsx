@@ -65,9 +65,10 @@ export default function Books(){
           All Books
         </Typography>
         <List dense>
-          {books.map((book, i) => {
-            return <Link to={"/books/"+books._id} key={i}>
-              <Divider/>
+        {books.map((book, i) => {
+          return (
+            <Link to={`/books/${book._id}`} key={i}>
+              <Divider />
               <ListItem button>
                 <div className={classes.details}>
                   <Typography type="headline" component="h2" color="primary" className={classes.bookTitle}>
@@ -85,8 +86,10 @@ export default function Books(){
                   <DeleteBook productId={book._id} />
                 </div>
               </ListItem>
-              <Divider/>
-            </Link>})}
+              <Divider />
+            </Link>
+          );
+        })}
         </List>
       </Paper>
     </div>)

@@ -5,6 +5,7 @@ import Menu from './core/Menu'
 import Signup from './user/Signup'
 import Signin from './auth/Signin'
 import Books from './books/Books'
+import EditBooks from './books/EditBooks'
 import CreateBooks from './books/CreateBooks'
 //<Route path="/user/:userId" component={Profile}/>
 import ProfilePage from './user/ProfilePage';
@@ -16,9 +17,9 @@ return ( <div>
         <Route path="/signup" component={Signup}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/books/all" component={Books}/>
+        <Route path="/books/edit/:bookId" component={EditBooks}/>
         <Route path="/books/create" component={CreateBooks}/>
         <Route path="/profile/:userId" component={ProfilePage} /> 
-        
     </Switch>
 </div> 
 )

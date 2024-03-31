@@ -21,23 +21,6 @@ const create = async (req, res) => {
             }
 
         })
-        /*
-    else
-    {    
-        const book = new Book(req.body);
-    try {
-        var rawdate = req.body.creationDate;
-        book.creationDate = new Date (rawdate);
-        await book.save();
-        return res.status(200).json({
-            message: "Book successfully created!"
-        });
-    } catch (err) {
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        });
-    }
-    }*/
 };
 
 const list = async (req, res) => {
@@ -56,7 +39,8 @@ const list = async (req, res) => {
     }
 };
 
-const id = async (req, res, next, id) => {
+const bookById = async (req, res, next, id) => {
+    
     try {
         let book = await Book.findById(id);
         if (!book)
@@ -77,16 +61,25 @@ const read = (req, res) => {
 };
 
 const update = async (req, res) => {
+    let form = new formidable.IncomingForm()
+    form.keepExtensions = true
+    form.parse(req, async (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+              message: "There was an error updating this book."
+            })
+          }
+    let book = req.profile;
+    book = extend(book, fields);
     try {
-        let book = req.profile;
-        book = extend(book, req.body);
-        await book.save();
-        res.json(book);
+        let result = await book.save();
+        res.json(result);
     } catch (err) {
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
         });
     }
+    })
 };
 
 const remove = async (req, res) => {
@@ -112,4 +105,4 @@ const deleteAll = async (req, res) => {
     }
 };
 
-export default { create, id, read, list, remove, update, deleteAll };
+export default { create, bookById, read, list, remove, update, deleteAll };
