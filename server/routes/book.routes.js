@@ -16,6 +16,6 @@ router.route('/api/books/by/:userId')
 .post(authCtrl.hasAuthorization, bookCtrl.create)
 
 
-router.param('id', bookCtrl.id);
+router.param('bookId', bookCtrl.bookById);
 
 export default router;
