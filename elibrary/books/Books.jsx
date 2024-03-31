@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import {list} from './api-books.js'
 import {Link} from 'react-router-dom'
+import DeleteBook from './DeleteBook.jsx'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -81,6 +82,7 @@ export default function Books(){
                   <Typography type="subheading" component="h4" className={classes.subheading}>
                     {"genre: " + book.genre}
                   </Typography>
+                  <DeleteBook productId={book._id} />
                 </div>
               </ListItem>
               <Divider/>
