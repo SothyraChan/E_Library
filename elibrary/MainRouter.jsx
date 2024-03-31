@@ -7,7 +7,6 @@ import Signin from './auth/Signin'
 import Books from './books/Books'
 import EditBooks from './books/EditBooks'
 import CreateBooks from './books/CreateBooks'
-//<Route path="/user/:userId" component={Profile}/>
 import ProfilePage from './user/ProfilePage';
 const MainRouter = () => {
 return ( <div> 
