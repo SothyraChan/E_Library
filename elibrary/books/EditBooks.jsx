@@ -81,7 +81,18 @@ export default function EditBooks ({match}) {
         if (data.error) {
           setValues({...values, error: data.error})
         } else {
-          setValues({...values, id: data._id, name: data.name, price: data.price, legnth: data.legnth, author: data.author, yearPublished: data.yearPublished, genre: data.genre, contentURL: data.contentURL, creationDate: data.creationDate})
+          setValues({...values, 
+            id: data._id,
+            name: data.name, 
+            price: data.price,
+            legnth: data.legnth,
+            author: data.author,
+            yearPublished: data.yearPublished,
+            genre: data.genre,
+            contentURL: data.contentURL,
+            creationDate: data.creationDate,
+            image: data.image
+          })
         }
       })
     return function cleanup(){
@@ -90,10 +101,10 @@ export default function EditBooks ({match}) {
   }, [])
   const clickSubmit = () => {
     let booktData = new FormData()
-    value.id && bookData.append('id', values.id)
+    value.id && bookData.append('id', values._id)
     values.name && bookData.append('name', values.name)
     values.price && bookData.append('price', values.price)
-    values.length && bookData.append('length', values.legnth)
+    values.length && bookData.append('length', values.length)
     value.author && bookData.append('author', values.author)
     values.yearPublished && bookData.append('yearPublished', values.yearPublished)
     values.genre && bookData.append('length', values.genre)
@@ -141,7 +152,7 @@ export default function EditBooks ({match}) {
               <FileUpload/>
             </Button>
           </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>
-          <TextField id="id" label="Book ID" className={classes.textField} value={values.id} onChange={handleChange('id')} margin="normal"/><br/>
+          <TextField id="id" label="Book ID" className={classes.textField} value={values._id} onChange={handleChange('id')} margin="normal"/><br/>
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField id="price" label="Price" className={classes.textField} value={values.price} onChange={handleChange('price')} type="number" margin="normal"/><br/>
           <TextField id="length" label="Length" className={classes.textField} value={values.length} onChange={handleChange('length')} type="number" margin="normal"/><br/>
