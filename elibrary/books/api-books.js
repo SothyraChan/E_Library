@@ -43,7 +43,7 @@ const update = async (params, books) => {
 
 const remove = async (params, credentials) => {
   try {
-    let response = await fetch('/api/books/'+params.productId, {
+    let response = await fetch('/api/books/'+ params.bookId, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
