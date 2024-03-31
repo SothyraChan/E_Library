@@ -7,19 +7,40 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { update } from './api-user.js';
+import auth from './../auth/auth-helper';
+import {read, update} from './api-user.js';
+import {Redirect} from 'react-router-dom';
 
-const EditProfile = () => {
+export default function EditProfile (props) {
   const [values, setValues] = useState({
     name: '',
     email: '',
     password: '',
-    admin: false
+    admin: false,
+    redirectToProfile: false,
+    error: ''
   });
+  // reference to authenticated user.
+  const jwt = auth.isAuthenticated()
 
-  useEffect(() => {
-    // Load user data here if needed
-  }, []);
+useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    read({
+      userId: props.userId
+    }, {t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        setValues({...values, error: data.error})
+      } else {
+        setValues({...values, name: data.name, email: data.email, admin: data.admin})
+      }
+    })
+    return function cleanup(){
+      abortController.abort()
+    }
+
+  }, [props.userId])
+
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -28,7 +49,9 @@ const EditProfile = () => {
   const handleCheck = () => {
     setValues({ ...values, admin: !values.admin });
   };
-
+  if (values.redirectToProfile) {
+    return (<Redirect to={'/user/' + values.userId}/>)
+  }
   const clickSubmit = () => {
     const confirmed = window.confirm('Do you really want to change?');
     if (confirmed) {
@@ -38,14 +61,19 @@ const EditProfile = () => {
         password: values.password,
         admin: values.admin
       };
-  
+      
       // Call the update function from the API
-      update(userData).then(response => {
-        if (response.error) {
-          console.error('Error updating user profile:', response.error);
+      update({
+        userId: props.userId
+      }, {
+        t: jwt.token
+      }, userData).then(response => {
+        if (response && response.error) {
+          setValues({...values,  error: response.error});
         } else {
-          console.log('User profile updated successfully');
-          // Optionally, handle any state updates or notifications here
+          auth.updateUser(data, ()=>{
+            setValues({...values, userId: data._id, redirectToProfile: true})
+          })
         }
       });
     }
@@ -103,6 +131,12 @@ const EditProfile = () => {
           />
           {values.admin ? 'Active' : 'Inactive'}
         </label>
+        <br/> {
+            values.error && (<Typography component="p" color="error">
+              <Icon color="error" className={classes.error}>error</Icon>
+              {values.error}
+            </Typography>)
+          }
       </CardContent>
       <CardActions>
         <Button color="primary" variant="contained" onClick={clickSubmit}>
@@ -112,5 +146,3 @@ const EditProfile = () => {
     </Card>
   );
 };
-
-export default EditProfile;

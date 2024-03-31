@@ -17,7 +17,7 @@ return ( <div>
         <Route path="/signin" component={Signin}/>
         <Route path="/books/all" component={Books}/>
         <Route path="/books/create" component={CreateBooks}/>
-        <Route path="/profile/:usedId" component={ProfilePage} /> 
+        <Route path="/profile/:userId" component={ProfilePage} /> 
         
     </Switch>
 </div> 

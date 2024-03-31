@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import auth from './../auth/auth-helper';
 import DeleteUser from './DeleteUser';
 import EditProfile from './EditProfile'; // Import the EditProfile component
+import {read} from './api-user.js'
+import {Redirect, Link} from 'react-router-dom'
 
-const ProfilePage = () => {
+export default function ProfilePage({ match }) {
   // Access the logged-in user information
-  const { user } = auth.isAuthenticated();
+  const [user, setUser] = useState({})
+  const [redirectToSignin, setRedirectToSignin] = useState(false)
+  const jwt = auth.isAuthenticated()
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    read({
+      userId: match.params.userId
+    }, {t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        setRedirectToSignin(true)
+      } else {
+        setUser(data)
+      }
+    })
+
+    return function cleanup(){
+      abortController.abort()
+    }
+
+  }, [match.params.userId])
 
   // State to manage the visibility of edit and delete buttons
   const [editDeleteVisible, setEditDeleteVisible] = useState(false);
@@ -36,5 +58,3 @@ const ProfilePage = () => {
     </div>
   );
 };
-
-export default ProfilePage;

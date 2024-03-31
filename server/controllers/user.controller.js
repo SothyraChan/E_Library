@@ -27,6 +27,7 @@ error: errorHandler.getErrorMessage(err)
 }
 const userByID = async (req, res, next, id) => { 
 try {
+  console.log("My id is: "+ id);
 let user = await User.findById(id) 
 if (!user)
 return res.status('400').json({ 
@@ -48,6 +49,7 @@ return res.json(req.profile)
 const update = async (req, res) => { 
 try {
 let user = req.profile
+console.log("name: " + user.name)
 user = extend(user, req.body) 
 user.updated = Date.now() 
 await user.save()
