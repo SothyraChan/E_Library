@@ -13,6 +13,7 @@ import Icon from '@material-ui/core/Icon'
 import {list} from './api-books.js'
 import {Link} from 'react-router-dom'
 import DeleteBook from './DeleteBook.jsx'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -103,11 +104,13 @@ export default function Books()
                   <Link to={'/books/' + book._id}>
                   <Button>See More</Button>
                   </Link>
-                  <DeleteBook 
+                  {
+                    auth.isAuthenticated() && <DeleteBook 
                       bookId= {book._id}
                       book = {book}
                       onRemove = {removeBook}
                   />
+                  }
                 </div>
               </ListItem>
             <Divider />
