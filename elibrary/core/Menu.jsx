@@ -60,8 +60,8 @@ const Menu = withRouter(({ history }) => (
               auth.clearJWT(() => history.push('/'))
             }}>Sign out</Button>
 
-           <Link to="/profile">
-           <Button style={isActive(history, "/profile")}>Profile</Button>
+           <Link to= {"/profile/" + auth.isAuthenticated().user._id}>
+           <Button style={isActive(history, "/profile/" + auth.isAuthenticated().user._id)}>Profile</Button>
           </Link>
         </span>)
 
