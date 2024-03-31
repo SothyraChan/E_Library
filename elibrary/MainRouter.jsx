@@ -16,7 +16,7 @@ return ( <div>
         <Route path="/signup" component={Signup}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/books/all" component={Books}/>
-        <Route path="/books/edit" component={EditBooks}/>
+        <Route path="/books/edit/:bookId" component={EditBooks}/>
         <Route path="/books/create" component={CreateBooks}/>
     </Switch>
 </div> 

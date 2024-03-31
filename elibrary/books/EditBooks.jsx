@@ -107,7 +107,7 @@ export default function EditBooks ({match}) {
       bookId: match.params.bookId
     }, {
       t: jwt.token
-    }, productData).then((data) => {
+    }, bookData).then((data) => {
       if (data.error) {
         setValues({...values, error: data.error})
       } else {
@@ -131,7 +131,7 @@ export default function EditBooks ({match}) {
       <Card className={classes.card}>
         <CardContent>
           <Typography type="headline" component="h2" className={classes.title}>
-            Edit Product
+            Edit Book
           </Typography><br/>
           <Avatar src={imageUrl} className={classes.bigAvatar}/><br/>
           <input accept="image/*" onChange={handleChange('image')} className={classes.input} id="icon-button-file" type="file" />
@@ -146,10 +146,10 @@ export default function EditBooks ({match}) {
           <TextField id="price" label="Price" className={classes.textField} value={values.price} onChange={handleChange('price')} type="number" margin="normal"/><br/>
           <TextField id="length" label="Length" className={classes.textField} value={values.length} onChange={handleChange('length')} type="number" margin="normal"/><br/>
           <TextField id="author" label="Author" className={classes.textField} value={values.author} onChange={handleChange('author')} margin="normal"/><br/>
-          <TextField id="Year Publish" label="yearPublished" className={classes.textField} value={values.yearPublished} onChange={handleChange('yearPublished')} type="number" margin="normal"/><br/>
+          <TextField id="yearPublished" label="Year Published" className={classes.textField} value={values.yearPublished} onChange={handleChange('yearPublished')} type="number" margin="normal"/><br/>
           <TextField id="genre" label="Genre" className={classes.textField} value={values.genre} onChange={handleChange('genre')} margin="normal"/><br/>
           <TextField id="contentURL" label="URL" className={classes.textField} value={values.contentURL} onChange={handleChange('contentURL')} margin="normal"/><br/>
-          <TextField id="creationDate" label="Date of Creation" className={classes.textField} value={values.creationDate} onChange={handleChange('creationDate')} type='date' margin="normal"/><br/>
+          <TextField id="creationDate" label="Date of Creation" className={classes.textField} value={values.creationDate} onChange={handleChange('creationDate')} type='date' margin="normal" InputLabelProps={{shrink: true,}} variant="outlined"/><br/>
         </CardContent>
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Update</Button>
