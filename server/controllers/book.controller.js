@@ -42,6 +42,7 @@ const list = async (req, res) => {
 const bookById = async (req, res, next, id) => {
     
     try {
+        console.log(id);
         let book = await Book.findById(id);
         if (!book)
             return res.status(400).json({
