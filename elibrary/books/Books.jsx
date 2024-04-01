@@ -14,6 +14,7 @@ import {list} from './api-books.js'
 import {Link} from 'react-router-dom'
 import DeleteBook from './DeleteBook.jsx'
 import auth from './../auth/auth-helper'
+import Edit from '@material-ui/icons/Edit'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -101,17 +102,30 @@ export default function Books()
                   <Typography type="subheading" component="h4" className={classes.subheading}>
                     {"genre: " + book.genre}
                   </Typography>
+                  </div>
+                  <div>
+                  {
+                    auth.isAuthenticated() && (<span>
+                      <DeleteBook 
+                      bookId= {book._id}
+                      book = {book}
+                      onRemove = {removeBook}/>
+                      
+                      <Link to={"/books/edit/" + book._id}>
+                      <IconButton aria-label="Edit" color="primary">
+                      <Edit/>
+                      </IconButton>
+                      </Link>
+                      </span>)
+                  }
+                  </div>
+                  <div>
                   <Link to={'/books/' + book._id}>
                   <Button>See More</Button>
                   </Link>
-                  {
-                    auth.isAuthenticated() && <DeleteBook 
-                      bookId= {book._id}
-                      book = {book}
-                      onRemove = {removeBook}
-                  />
-                  }
-                </div>
+                  </div>
+                  
+                
               </ListItem>
             <Divider />
             </span>})
