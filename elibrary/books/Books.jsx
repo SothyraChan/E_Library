@@ -42,11 +42,13 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '5px'
   },
   details: {
-    padding: '24px'
+    padding: '24px',
+    minWidth: '80%',
   },
   buttonRight:
   {
-    alignItems: "right"
+    margin: 'auto',
+    marginBottom: theme.spacing(2)
   }
 }))
 export default function Books()
@@ -89,7 +91,8 @@ export default function Books()
           return <span key={i}>
             <Divider />
               <ListItem>
-                <div className={classes.details}>
+              <div className={classes.details} button>
+                <Link to={'/books/' + book._id}>
                   <Typography type="headline" component="h2" color="primary" className={classes.bookTitle}>
                     {book.name}
                   </Typography>
@@ -102,8 +105,9 @@ export default function Books()
                   <Typography type="subheading" component="h4" className={classes.subheading}>
                     {"genre: " + book.genre}
                   </Typography>
-                  </div>
-                  <div>
+                </Link>
+              </div>
+              <div>
                   {
                     auth.isAuthenticated() && (<span>
                       <DeleteBook 
@@ -118,14 +122,7 @@ export default function Books()
                       </Link>
                       </span>)
                   }
-                  </div>
-                  <div>
-                  <Link to={'/books/' + book._id}>
-                  <Button>See More</Button>
-                  </Link>
-                  </div>
-                  
-                
+                </div>
               </ListItem>
             <Divider />
             </span>})
