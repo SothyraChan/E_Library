@@ -50,7 +50,7 @@ export default function DeleteBook(props) {
 
   return (
     <span>
-      <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
+      <IconButton className = {classes.button} aria-label="Delete" onClick={clickButton} color="secondary">
         <DeleteIcon/>
       </IconButton>
       <br/> {

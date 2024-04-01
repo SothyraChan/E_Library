@@ -46,7 +46,8 @@ const useStyles = makeStyles(theme => ({
   },
   buttonRight:
   {
-    alignItems: "right"
+    margin: 'auto',
+    marginBottom: theme.spacing(2)
   }
 }))
 export default function Books()
@@ -102,8 +103,11 @@ export default function Books()
                   <Typography type="subheading" component="h4" className={classes.subheading}>
                     {"genre: " + book.genre}
                   </Typography>
+                  <Link to={'/books/' + book._id}>
+                  <Button>See More</Button>
+                  </Link>
                   </div>
-                  <div>
+                  <div className={classes.buttonRight}>
                   {
                     auth.isAuthenticated() && (<span>
                       <DeleteBook 
@@ -118,11 +122,6 @@ export default function Books()
                       </Link>
                       </span>)
                   }
-                  </div>
-                  <div>
-                  <Link to={'/books/' + book._id}>
-                  <Button>See More</Button>
-                  </Link>
                   </div>
                   
                 
