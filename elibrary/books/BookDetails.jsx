@@ -44,23 +44,15 @@ export default function BookDetails ({match})
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <div className="book-details" style={{ marginLeft: '15px' }}>
             <h4 id="book-name">{book.name}</h4>
-            <p id="price">Price: {book.price}</p>
             <p id="author">Author: {book.author}</p>
+            <p id="price">Price: {book.price}$</p>
             <p id="date-pub">Publication Date: {book.yearPublished}</p>
+            <p id="length">Number of pages: {book.length}</p>
+            <p id="genre">Genre: {book.genre}</p>
           </div>
         </div>
-        <div>
-          <p>In the mystical land of Eliria, where the sun kisses the sky and the
-            moon whispers secrets to the stars, lies the tale of
-            "{book.name}." Within the ancient pages of this enchanted
-            book, one discovers the untold stories of heroes and heroines, whose
-            bravery echoes through the ages.
-
-            From the sprawling forests of Eldoria to the towering peaks of Mount
-            Celestia, the adventures unfold like petals of a blooming flower, each
-            chapter revealing a new mystery waiting to be unraveled. Through
-            perilous journeys and daring escapades, the characters navigate
-            treacherous paths in pursuit of truth and justice.</p>
+        <div id="description">
+          <p>Description: {book.description}</p>
         </div>
       </div>
     </main>
