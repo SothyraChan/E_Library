@@ -7,7 +7,9 @@ import Signin from './auth/Signin'
 import Books from './books/Books'
 import EditBooks from './books/EditBooks'
 import CreateBooks from './books/CreateBooks'
-import ProfilePage from './user/ProfilePage';
+import ProfilePage from './user/ProfilePage'
+import BookDetails from './books/BookDetails';
+
 const MainRouter = () => {
 return ( <div> 
     <Menu/>
@@ -19,6 +21,7 @@ return ( <div>
         <Route path="/books/edit/:bookId" component={EditBooks}/>
         <Route path="/books/create" component={CreateBooks}/>
         <Route path="/profile/:userId" component={ProfilePage} /> 
+        <Route path="/books/:bookId" component={BookDetails}/>
     </Switch>
 </div> 
 )

@@ -70,6 +70,11 @@ export default function Books()
     }
 
   }, [])
+
+  const handleClick = (bookId) => {
+    history.push(`/books/${bookId}`)
+  }
+
   const removeBook = (book) => {
     const updatedBooks = [...books]
     const index = updatedBooks.indexOf(book)
@@ -121,7 +126,7 @@ export default function Books()
                   </div>
                   <div>
                   <Link to={'/books/' + book._id}>
-                  <Button>See More</Button>
+                  <Button onClick={() => handleClick(book._id)}>See More</Button>
                   </Link>
                   </div>
                   
