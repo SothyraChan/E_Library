@@ -36,7 +36,6 @@ export default function ProfilePage({ match }) {
   const toggleEditDelete = () => {
     setEditDeleteVisible(!editDeleteVisible);
   };
-
   return (
     <div>
       <h2>Profile Page</h2>
@@ -44,14 +43,15 @@ export default function ProfilePage({ match }) {
         <p>Name: {user.name}</p>
         <p>Email: {user.email}</p>
         {/* Button to toggle visibility of edit and delete buttons */}
-        <button onClick={toggleEditDelete}>Edit / Delete</button>
+        <button onClick={toggleEditDelete}> Edit / Delete </button>
         {/* Edit and Delete buttons */}
         {editDeleteVisible && (
           <div>
             {/* Button to delete the user */}
             <DeleteUser userId={user._id} />
             {/* Button to edit user profile */}
-            <EditProfile userId={user._id} />
+            <Link to={'/'}></Link><EditProfile 
+            userId={user._id}/>
           </div>
         )}
       </div>

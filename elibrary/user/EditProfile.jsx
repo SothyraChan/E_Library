@@ -9,7 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import auth from './../auth/auth-helper';
 import {read, update} from './api-user.js';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function EditProfile (props) {
   const [values, setValues] = useState({
@@ -49,12 +50,14 @@ useEffect(() => {
   const handleCheck = () => {
     setValues({ ...values, admin: !values.admin });
   };
-  if (values.redirectToProfile) {
-    return (<Redirect to={'/user/' + values.userId}/>)
-  }
+
   const clickSubmit = () => {
-    const confirmed = window.confirm('Do you really want to change?');
-    if (confirmed) {
+    if (values.password == '')
+    {
+        window.alert("Please insert your password");
+    }
+    else
+    {
       const userData = {
         name: values.name,
         email: values.email,
@@ -72,13 +75,15 @@ useEffect(() => {
           setValues({...values,  error: response.error});
         } else {
           auth.updateUser(data, ()=>{
-            setValues({...values, userId: data._id, redirectToProfile: true})
+            setValues({...values, 'userId': data._id, 'redirectToProfile': true})
           })
         }
       });
-    }
+  }
   };
-
+  if (values.redirectToProfile) {
+    return (<Redirect to={'/'}/>)
+  }
   return (
     <Card>
       <CardContent>
@@ -133,16 +138,19 @@ useEffect(() => {
         </label>
         <br/> {
             values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
+              <Icon color="error">There's been an error. </Icon>
               {values.error}
             </Typography>)
           }
       </CardContent>
       <CardActions>
-        <Button color="primary" variant="contained" onClick={clickSubmit}>
+        <Link to={"/"}><Button color="primary" variant="contained" onClick={clickSubmit}>
           Submit
-        </Button>
+        </Button></Link>
       </CardActions>
     </Card>
   );
 };
+EditProfile.propTypes = {
+  userId: PropTypes.string.isRequired
+}

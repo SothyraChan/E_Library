@@ -9,8 +9,9 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from './../auth/auth-helper'
+import {signout} from './../auth/api-auth.js'
 import {remove} from './api-user.js'
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 export default function DeleteUser(props) {
   const [open, setOpen] = useState(false)
@@ -27,10 +28,11 @@ export default function DeleteUser(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        auth.signout(() => console.log('deleted'))
+        signout(() => console.log('deleted'))
         setRedirect(true)
       }
     })
+    auth.clearJWT(() => console.log('deleted'))
   }
   const handleRequestClose = () => {
     setOpen(false)
@@ -55,9 +57,9 @@ export default function DeleteUser(props) {
           <Button onClick={handleRequestClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={deleteAccount} color="secondary" autoFocus="autoFocus">
+          <Link to={"/"}><Button onClick={deleteAccount} color="secondary" autoFocus="autoFocus">
             Confirm
-          </Button>
+          </Button>  </Link>
         </DialogActions>
       </Dialog>
     </span>)
