@@ -20,6 +20,9 @@ const CURRENT_WORKING_DIR = process.cwd()
 //})
 //...
 //app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
+app.use(express.static(path.join(CURRENT_WORKING_DIR, "dist/app")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', userRoutes)
