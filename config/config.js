@@ -6,4 +6,3 @@ const config = {
     "mongodb+srv://rojindayani:ElectronicLibrary@atlascluster.gr8sruq.mongodb.net/?retryWrites=true&w=majority"
     }
 export default config
-    
