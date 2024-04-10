@@ -1,5 +1,5 @@
 const config = {
-    env: "development",
+    env: "production",
     port: 3000,
     jwtSecret: "YOUR_secret_key",
     mongoUri: process.env.MONGODB_URI || 
