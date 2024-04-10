@@ -13,7 +13,6 @@
     "@fontsource/roboto": "^5.0.5",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
-    "@types/react-router-dom": "^5.3.3",
     "bcrypt": "^5.1.0",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
